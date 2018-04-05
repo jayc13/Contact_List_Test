@@ -7,15 +7,17 @@ import time
 
 class BasePage(object):
 
-    def __init__(self, browser, base_url='http://www.seleniumframework.com'):
-        self.base_url = base_url
+    def __init__(self, browser, base_url=None):
+        self.base_url = 'http://167.99.137.138:3000/'
         self.browser = browser
         self.timeout = 30
 
     def find_element(self, *loc):
         return self.browser.find_element(*loc)
 
-    def visit(self,url):
+    def visit(self,url=None):
+        if(url == None):
+            url = self.base_url
         self.browser.get(url)
 
     def hover(self,element):
@@ -45,4 +47,4 @@ class BasePage(object):
             super(BasePage, self).__getattribute__("method_missing")(what)
 
     def method_missing(self, what):
-        print "No %s here!"%what
+        print("No %s here!"%what)

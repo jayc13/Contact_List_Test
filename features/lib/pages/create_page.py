@@ -1,8 +1,9 @@
-__author__ = 'Javier Caballero'
 from selenium.webdriver.common.by import By
 from base_page_object import BasePage
+import time
 
-class CheckoutPage(BasePage):
+class CreatePage(BasePage):
+
     def __init__(self, context):
         BasePage.__init__(
             self,
@@ -10,8 +11,7 @@ class CheckoutPage(BasePage):
             base_url='http://www.automationpractice.com')
 
     locator_dictionary = {
-        "unit_price":(By.CLASS_NAME,"special-price"),
-        "total_price":(By.ID,"total_price"),
-        "proceed_to_checkout":(By.LINK_TEXT,"Proceed to checkout")
+        "sign_in": (By.CSS_SELECTOR, '.login'),
+        "contact_us": (By.LINK_TEXT, 'Contact us'),
+        "sign_out": (By.LINK_TEXT, 'Sign out')
     }
-

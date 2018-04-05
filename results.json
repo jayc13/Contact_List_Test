@@ -3,57 +3,22 @@
   "elements": [
     {
       "keyword": "Scenario", 
-      "location": "features/Login.feature:3", 
-      "name": "Login and logout", 
+      "location": "features/CRUD.feature:3", 
+      "name": "Access to Index page", 
       "steps": [
         {
           "keyword": "When", 
-          "location": "features/Login.feature:4", 
+          "location": "features/CRUD.feature:4", 
           "match": {
             "arguments": [], 
-            "location": "features/steps/ShoppingCart.py:8"
+            "location": "features/steps/ContactList.py:8"
           }, 
-          "name": "I open automationpractice website", 
+          "name": "I open Contact List website", 
           "result": {
-            "duration": 14.661988973617554, 
+            "duration": 3.7343521118164062, 
             "status": "passed"
           }, 
           "step_type": "when"
-        }, 
-        {
-          "keyword": "And", 
-          "location": "features/Login.feature:5", 
-          "match": {
-            "arguments": [
-              {
-                "value": "javier@caballero.com"
-              }, 
-              {
-                "value": "36416999"
-              }
-            ], 
-            "location": "features/steps/ShoppingCart.py:15"
-          }, 
-          "name": "I login with username \"javier@caballero.com\" and password \"36416999\"", 
-          "result": {
-            "duration": 1.943256139755249, 
-            "status": "passed"
-          }, 
-          "step_type": "when"
-        }, 
-        {
-          "keyword": "Then", 
-          "location": "features/Login.feature:6", 
-          "match": {
-            "arguments": [], 
-            "location": "features/steps/ShoppingCart.py:21"
-          }, 
-          "name": "I verify that I successfully logged in by logging out", 
-          "result": {
-            "duration": 1.9299819469451904, 
-            "status": "passed"
-          }, 
-          "step_type": "then"
         }
       ], 
       "tags": [], 
@@ -61,8 +26,8 @@
     }
   ], 
   "keyword": "Feature", 
-  "location": "features/Login.feature:1", 
-  "name": "Login to portal", 
+  "location": "features/CRUD.feature:1", 
+  "name": "CRUD Contact", 
   "status": "passed", 
   "tags": []
 }
