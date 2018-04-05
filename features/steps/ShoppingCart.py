@@ -1,5 +1,6 @@
 from behave import *
 from features.lib.pages import *
+import time
 
 use_step_matcher("re")
 
@@ -8,16 +9,13 @@ use_step_matcher("re")
 def step_impl(context):
     page = AutomationHomePage(context)
     page.visit("http://www.automationpractice.com")
-    page.sign_in.click()
+    page.sign_in()
 
 
 @step('I login with username "([^"]*)" and password "([^"]*)"')
 def step_impl(context,username,password):
     page = LoginPage(context)
-    page.email.send_keys("abc@xyz.com")
-    page.password.send_keys("Test@123")
-    page.signin_button.click()
-    # page.login(username=username,passwd=password)
+    page.login(username=username,passwd=password)
 
 
 @then("I verify that I successfully logged in by logging out")

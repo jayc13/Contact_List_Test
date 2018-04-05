@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.chrome.options import Options
 # If you don't see colors (RED and GREEN) on command line, add the below lines
 # from colorama import init
 # init()
@@ -40,9 +42,28 @@ def before_scenario(context, scenario):
     # For some reason, python doesn't have switch case -
     # http://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python
     if BROWSER == 'chrome':
-        context.browser = webdriver.Chrome()
+        #context.browser = webdriver.Chrome()
+        context.browser = webdriver.Remote(
+                            command_executor='http://127.0.0.1:4444/wd/hub', 
+                            desired_capabilities={
+                                'browserName': 'chrome',
+                                'chromeOptions': { 
+                                    'args': [
+                                        "--start-maximized", 
+                                        "disable-extensions", 
+                                        "test-type"
+                                    ] 
+                                }
+                            }
+                        )
     elif BROWSER == 'firefox':
-        context.browser = webdriver.Firefox()
+        #context.browser = webdriver.Firefox()
+        context.browser = webdriver.Remote(
+                            command_executor='http://127.0.0.1:4444/wd/hub',
+                            desired_capabilities={
+                                'browserName': 'firefox'
+                            }
+                        )
     elif BROWSER == 'safari':
         context.browser = webdriver.Safari()
     elif BROWSER == 'ie':
