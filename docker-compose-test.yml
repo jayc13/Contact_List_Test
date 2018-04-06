@@ -40,4 +40,6 @@ services:
       - contact-list
   
 networks:
-   contact-list:
+   default:
+        external:
+            name: contact-list
