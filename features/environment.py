@@ -64,8 +64,6 @@ def before_scenario(context, scenario):
                 'browserName': 'chrome',
                 'chromeOptions': {
                     'args': [
-                        "--start-maximized",
-                        "disable-extensions",
                         "test-type"
                     ]
                 }
@@ -82,7 +80,7 @@ def before_scenario(context, scenario):
     else:
         print("Browser you entered:", BROWSER, "is invalid value")
 
-    context.browser.maximize_window()
+    # context.browser.maximize_window()
     # print("Before scenario\n")
 
 
