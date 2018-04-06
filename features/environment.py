@@ -1,31 +1,25 @@
-from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.chrome.options import Options
-# If you don't see colors (RED and GREEN) on command line, add the below lines
-# from colorama import init
-# init()
+import logging
+
 import os
-# import zipfile
 import shutil
 import time
-import logging
-from lib.pagefactory import on
 
+from selenium import webdriver
 
 
 def before_all(context):
-     print("Executing before all")
+    print("Executing before all")
 
 def before_feature(context, feature):
-     print("Before feature\n")
-     # Create logger
-     # TODO - http://stackoverflow.com/questions/6386698/using-the-logging-python-class-to-write-to-a-file
-     context.logger = logging.getLogger('seleniumframework_tests')
-     hdlr = logging.FileHandler('./seleniumframework_tests.log')
-     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-     hdlr.setFormatter(formatter)
-     context.logger.addHandler(hdlr)
-     context.logger.setLevel(logging.DEBUG)
+    print("Before feature\n")
+    # Create logger
+    # TODO - http://stackoverflow.com/questions/6386698/using-the-logging-python-class-to-write-to-a-file
+    context.logger = logging.getLogger('seleniumframework_tests')
+    hdlr = logging.FileHandler('./seleniumframework_tests.log')
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    hdlr.setFormatter(formatter)
+    context.logger.addHandler(hdlr)
+    context.logger.setLevel(logging.DEBUG)
 
 # Scenario level objects are popped off context when scenario exits
 
@@ -44,26 +38,26 @@ def before_scenario(context, scenario):
     if BROWSER == 'chrome':
         #context.browser = webdriver.Chrome()
         context.browser = webdriver.Remote(
-                            command_executor='http://127.0.0.1:4444/wd/hub', 
-                            desired_capabilities={
-                                'browserName': 'chrome',
-                                'chromeOptions': { 
-                                    'args': [
-                                        "--start-maximized", 
-                                        "disable-extensions", 
-                                        "test-type"
-                                    ] 
-                                }
-                            }
-                        )
+            command_executor='http://127.0.0.1:4444/wd/hub',
+            desired_capabilities={
+                'browserName': 'chrome',
+                'chromeOptions': {
+                    'args': [
+                        "--start-maximized",
+                        "disable-extensions",
+                        "test-type"
+                    ]
+                }
+            }
+        )
     elif BROWSER == 'firefox':
         #context.browser = webdriver.Firefox()
         context.browser = webdriver.Remote(
-                            command_executor='http://127.0.0.1:4444/wd/hub',
-                            desired_capabilities={
-                                'browserName': 'firefox'
-                            }
-                        )
+            command_executor='http://127.0.0.1:4444/wd/hub',
+            desired_capabilities={
+                'browserName': 'firefox'
+            }
+        )
     elif BROWSER == 'safari':
         context.browser = webdriver.Safari()
     elif BROWSER == 'ie':
@@ -89,7 +83,7 @@ def after_scenario(context, scenario):
     context.browser.quit()
 
 def after_feature(context, feature):
-            print("\nAfter Feature")
+    print("\nAfter Feature")
 
 def after_all(context):
     print("User data:", context.config.userdata)
@@ -100,9 +94,9 @@ def after_all(context):
             os.makedirs("failed_scenarios_screenshots")
         if context.config.userdata['ARCHIVE'] == "Yes":
             shutil.make_archive(
-    time.strftime("%d_%m_%Y"),
-    'zip',
-     "failed_scenarios_screenshots")
+                time.strftime("%d_%m_%Y"),
+                'zip',
+                "failed_scenarios_screenshots")
             #os.rmdir("failed_scenarios_screenshots")
             print("Executing after all")
 

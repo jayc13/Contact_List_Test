@@ -10,11 +10,17 @@ class IndexPage(BasePage):
 
     locator_dictionary = {
         "sign_in": (By.CSS_SELECTOR, '.login'),
-        "add_contact_button": (By.CSS_SELECTOR, '#add_contact')
+        "add_contact_button": (By.CSS_SELECTOR, '#add_contact'),
+        "contact_rows": (By.XPATH, '"#table_contacts tbody tr"'),
     }
 
     def go_to_create_contact(self):
         self.find_element(*self.locator_dictionary['add_contact_button']).click()
+
+    def get_count_of_contact(self):
+        a = self.find_element(*self.locator_dictionary['contact_rows'])
+        print(a)
+        return len(a)
 
     class HeaderPage(BasePage):
         def __init__(self, context):
