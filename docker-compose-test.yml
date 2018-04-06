@@ -36,7 +36,7 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     links:
-      - selenium_hub:hub
+      - "hub:selenium_hub"
     depends_on:
       - hub
     environment:
@@ -47,7 +47,7 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     links:
-      - selenium_hub:hub
+      - "hub:selenium_hub"
     depends_on:
       - hub
     environment:
