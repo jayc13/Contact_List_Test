@@ -40,6 +40,5 @@ services:
       - contact-list
   
 networks:
-   default:
-        external:
-            name: contact-list
+   contact-list:
+      external: true
