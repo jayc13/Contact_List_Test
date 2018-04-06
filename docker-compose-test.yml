@@ -3,6 +3,8 @@ services:
   db:
     image: postgres:9.5
     container_name: contact_list_db
+    networks:
+      - contact-list
     environment:
       - POSTGRES_USER=contact_list
       - POSTGRES_PASSWORD=contact_list
@@ -13,6 +15,8 @@ services:
   web:
     image: caballerojavier13/contact_list_app:latest
     container_name: contact_list_app
+    networks:
+      - contact-list
     command: >
       bash -c "sleep 10 && 
                cd /contact-list &&  
@@ -25,34 +29,8 @@ services:
     links:
       - "db:contact-list_db"
           
-  hub:
-    image: selenium/hub:3.4.0
-    container_name: selenium_hub
-    ports:
-      - "4444:4444"        
-          
-  firefox:
-    image: selenium/node-firefox:3.4.0
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      - HUB_HOST=selenium_hub
-      - HUB_PORT_4444_TCP_PORT=4444
-      - HUPORT_4444_TCP_ADDR=selenium_hub
-      
-  chrome:
-    image: selenium/node-chrome:3.4.0
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      - HUB_HOST=selenium_hub
-      - HUB_PORT_4444_TCP_PORT=4444
-      - HUPORT_4444_TCP_ADDR=selenium_hub
-
   test:
     image: caballerojavier13/contact_list_test:latest
     container_name: contact_list_test
+    networks:
+      - contact-list
