@@ -23,7 +23,7 @@ def step_impl(context):
 def step_impl(context):
     page = IndexPage(context)
     page.delete_contact_by_index(0)
-    time.sleep() 
+    time.sleep(5) 
 
 
 @step('I go to edit one contact')
