@@ -1,7 +1,7 @@
 __author__ = 'Javier Caballero'
 from selenium.webdriver.common.by import By
-from base_page_object import BasePage
-import time
+from .base_page_object import BasePage
+
 
 class IndexPage(BasePage):
 
@@ -9,17 +9,15 @@ class IndexPage(BasePage):
         BasePage.__init__(self, context.browser)
 
     locator_dictionary = {
-        "sign_in": (By.CSS_SELECTOR, '.login')
+        "sign_in": (By.CSS_SELECTOR, '.login'),
+        "add_contact_button": (By.CSS_SELECTOR, '#add_contact')
     }
 
-    def sign_in(self):
-        self.find_element(*self.locator_dictionary['sign_in']).click()
-
+    def go_to_create_contact(self):
+        self.find_element(*self.locator_dictionary['add_contact_button']).click()
 
     class HeaderPage(BasePage):
         def __init__(self, context):
             BasePage.__init__(self, context.browser)
 
-        locator_dictionary = {
-            "menu_women": (By.XPATH, "//*[@title='Women']")
-        }
+        locator_dictionary = {}

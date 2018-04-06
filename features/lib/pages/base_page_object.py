@@ -5,10 +5,12 @@ from selenium.common.exceptions import *
 import traceback
 import time
 
+
 class BasePage(object):
 
     def __init__(self, browser, base_url=None):
-        self.base_url = 'http://167.99.137.138:3000/'
+        # self.base_url = 'http://167.99.137.138:3000/'
+        self.base_url = 'http://localhost:3000'
         self.browser = browser
         self.timeout = 30
 
