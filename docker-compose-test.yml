@@ -26,24 +26,28 @@ services:
       - "db:contact-list_db"
 
   hub:
-    image: selenium/hub:3.4.0
+    image: selenium/hub:3.2.0
     container_name: selenium_hub
     ports:
       - "4444:4444"
       
   chrome:
-    image: selenium/node-chrome:3.4.0
+    image: selenium/node-chrome:3.2.0
     volumes:
       - /dev/shm:/dev/shm
+    links:
+      - selenium-hub:hub
     depends_on:
       - hub
     environment:
       HUB_HOST: selenium_hub
       
   firefox:
-    image: selenium/node-firefox:3.4.0
+    image: selenium/node-firefox:3.2.0
     volumes:
       - /dev/shm:/dev/shm
+    links:
+      - selenium-hub:hub
     depends_on:
       - hub
     environment:
