@@ -36,7 +36,7 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
-      - selenium_hub
+      - hub
     environment:
       HUB_HOST: selenium_hub
       
