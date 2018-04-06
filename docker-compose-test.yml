@@ -23,7 +23,7 @@ services:
     ports:
       - "3000:3000"
     links:
-      - "db:contact-list_db
+      - "db:contact-list_db"
       
   chrome:
     image: selenium/node-chrome:3.2.0
