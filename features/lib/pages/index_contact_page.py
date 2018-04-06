@@ -2,6 +2,7 @@ __author__ = 'Javier Caballero'
 from selenium.webdriver.common.by import By
 from .base_page_object import BasePage
 from selenium.common.exceptions import NoSuchElementException
+import time
 
 
 class IndexPage(BasePage):
@@ -39,6 +40,7 @@ class IndexPage(BasePage):
 
     def delete_contact_by_index(self, index):
         (self.find_elements(*self.locator_dictionary['contact_rows_delete_button'])[index]).click()
+        time.sleep(5) 
         self.accept_alert()
 
     def edit_contact_by_index(self, index):
