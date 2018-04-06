@@ -25,12 +25,23 @@ services:
     links:
       - "db:contact-list_db"
 
-  selenium:
-    image: dosel/zalenium
-    container_name: selenium_hub
-    privileged: true
+  chrome:
+    image: selenium/node-chrome:3.4.0
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/shm:/dev/shm
+    environment:
+      HUB_HOST: selenium_hub
+      
+  firefox:
+    image: selenium/node-firefox:3.4.0
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      HUB_HOST: selenium_hub
+
+  hub:
+    image: selenium/hub:3.4.0
+    container_name: selenium_hub
     ports:
       - "4444:4444"
 
