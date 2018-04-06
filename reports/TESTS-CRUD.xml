@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuite errors="0" failures="0" name="CRUD.CRUD Contact" skipped="0" tests="4" time="25.129737"><testcase classname="CRUD.CRUD Contact" name="Access to Index page" status="passed" time="5.407547"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Access to Index page
+    Given I open Contact List website ... passed in 5.369s
+    Then I verify that the count of Contacts is 0 ... passed in 0.039s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="CRUD.CRUD Contact" name="Create a Contact" status="passed" time="7.524525"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Create a Contact
+    Given I open Contact List website ... passed in 4.873s
+    When I access to create contact page ... passed in 0.524s
+    And I create a new Contact with random values ... passed in 1.605s
+    And I back to home page from a show contact page ... passed in 0.505s
+    Then I verify that the count of Contacts is 1 ... passed in 0.017s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="CRUD.CRUD Contact" name="Edit a Contact" status="passed" time="6.622773"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Edit a Contact
+    Given I open Contact List website ... passed in 4.156s
+    When I verify that the count of Contacts is 1 ... passed in 0.016s
+    And I go to edit one contact ... passed in 0.482s
+    And I edit a current Contact with random values ... passed in 1.451s
+    And I back to home page from a show contact page ... passed in 0.507s
+    Then I verify that the count of Contacts is 1 ... passed in 0.010s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="CRUD.CRUD Contact" name="Delete a Contact" status="passed" time="5.574892"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: Delete a Contact
+    Given I open Contact List website ... passed in 4.142s
+    When I verify that the count of Contacts is 1 ... passed in 0.022s
+    And I delete one contact ... passed in 0.665s
+    Then I verify that the count of Contacts is 0 ... passed in 0.746s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

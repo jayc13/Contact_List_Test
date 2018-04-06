@@ -8,10 +8,11 @@ from selenium import webdriver
 
 
 def before_all(context):
-    print("Executing before all")
+    # print("Executing before all")
+    print("")
 
 def before_feature(context, feature):
-    print("Before feature\n")
+    # print("Before feature\n")
     # Create logger
     # TODO - http://stackoverflow.com/questions/6386698/using-the-logging-python-class-to-write-to-a-file
     context.logger = logging.getLogger('seleniumframework_tests')
@@ -24,7 +25,7 @@ def before_feature(context, feature):
 # Scenario level objects are popped off context when scenario exits
 
 def before_scenario(context, scenario):
-    print("User data:", context.config.userdata)
+    # print("User data:", context.config.userdata)
     # behave -D BROWSER=chrome
     if 'BROWSER' in context.config.userdata.keys():
         if context.config.userdata['BROWSER'] is None:
@@ -69,12 +70,29 @@ def before_scenario(context, scenario):
     else:
         print("Browser you entered:", BROWSER, "is invalid value")
 
+    # behave -D ENV=test
+
+    if 'ENV' in context.config.userdata.keys():
+        if context.config.userdata['ENV'] is None:
+            BROWSER = 'dev'
+        else:
+            BROWSER = context.config.userdata['ENV']
+    else:
+        BROWSER = 'dev'
+
+    if BROWSER == 'dev':
+        context.base_url = "http://localhost:3000"
+    elif BROWSER == 'test':
+        context.base_url = "http://contact_list_app:3000"
+    elif BROWSER == 'prod':
+        context.base_url = "http://167.99.137.138:3000"
+
     context.browser.maximize_window()
-    print("Before scenario\n")
+    # print("Before scenario\n")
 
 
 def after_scenario(context, scenario):
-    print("scenario status" + scenario.status)
+    # print("scenario status" + scenario.status)
     if scenario.status == "failed":
         if not os.path.exists("failed_scenarios_screenshots"):
             os.makedirs("failed_scenarios_screenshots")
@@ -83,10 +101,11 @@ def after_scenario(context, scenario):
     context.browser.quit()
 
 def after_feature(context, feature):
-    print("\nAfter Feature")
+    # print("\nAfter Feature")
+    print("")
 
 def after_all(context):
-    print("User data:", context.config.userdata)
+    # print("User data:", context.config.userdata)
     # behave -D ARCHIVE=Yes
     if 'ARCHIVE' in context.config.userdata.keys():
         if os.path.exists("failed_scenarios_screenshots"):

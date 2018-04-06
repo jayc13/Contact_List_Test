@@ -1,4 +1,7 @@
-# Python Behave Page Object Pattern
+# Contact List Test #
+
+[![Build Status](http://138.68.74.4:8080/job/Contact-List/job/Client_List_Test/badge/icon)](http://138.68.74.4:8080/job/Contact-List/job/Client_List_Test/) 
+
 Selenium webdriver , python , behave  
 Tested on Python 2.7.10 & 3.4.2 and all libraries installed with the pip that came with 3.4.2  
 

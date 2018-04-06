@@ -5,7 +5,11 @@
 *.pyc
 *.exe
 /results.json
+results.txt
 failed_scenarios_screenshots/
 features/__pycache__/
 features/lib/__pycache__/
 features/lib/pages/__pycache__/
+report
+
+seleniumframework_tests.log
