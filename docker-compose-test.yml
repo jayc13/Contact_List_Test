@@ -25,6 +25,12 @@ services:
     links:
       - "db:contact-list_db"
 
+  hub:
+    image: selenium/hub:3.4.0
+    container_name: selenium_hub
+    ports:
+      - "4444:4444"
+      
   chrome:
     image: selenium/node-chrome:3.4.0
     volumes:
@@ -42,12 +48,6 @@ services:
       - hub
     environment:
       HUB_HOST: selenium_hub
-
-  hub:
-    image: selenium/hub:3.4.0
-    container_name: selenium_hub
-    ports:
-      - "4444:4444"
 
   test:
     image: caballerojavier13/contact_list_test:latest
