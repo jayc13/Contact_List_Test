@@ -1,5 +1,4 @@
 import logging
-
 import os
 import shutil
 import time
@@ -26,6 +25,27 @@ def before_feature(context, feature):
 
 def before_scenario(context, scenario):
     # print("User data:", context.config.userdata)
+
+    # behave -D ENV=test
+
+    if 'ENV' in context.config.userdata.keys():
+        if context.config.userdata['ENV'] is None:
+            BROWSER = 'dev'
+        else:
+            BROWSER = context.config.userdata['ENV']
+    else:
+        BROWSER = 'dev'
+
+    if BROWSER == 'dev':
+        context.base_url = "http://localhost:3000"
+        webdriver_url = "http://127.0.0.1:4444/wd/hub"
+    elif BROWSER == 'test':
+        context.base_url = "http://contact_list_app:3000"
+        webdriver_url = "http://selenium_hub:4444/wd/hub"
+    elif BROWSER == 'prod':
+        context.base_url = "http://167.99.137.138:3000"
+        webdriver_url = "http://selenium_hub:4444/wd/hub"
+
     # behave -D BROWSER=chrome
     if 'BROWSER' in context.config.userdata.keys():
         if context.config.userdata['BROWSER'] is None:
@@ -39,7 +59,7 @@ def before_scenario(context, scenario):
     if BROWSER == 'chrome':
         #context.browser = webdriver.Chrome()
         context.browser = webdriver.Remote(
-            command_executor='http://127.0.0.1:4444/wd/hub',
+            command_executor=webdriver_url,
             desired_capabilities={
                 'browserName': 'chrome',
                 'chromeOptions': {
@@ -54,38 +74,13 @@ def before_scenario(context, scenario):
     elif BROWSER == 'firefox':
         #context.browser = webdriver.Firefox()
         context.browser = webdriver.Remote(
-            command_executor='http://127.0.0.1:4444/wd/hub',
+            command_executor=webdriver_url,
             desired_capabilities={
                 'browserName': 'firefox'
             }
         )
-    elif BROWSER == 'safari':
-        context.browser = webdriver.Safari()
-    elif BROWSER == 'ie':
-        context.browser = webdriver.Ie()
-    elif BROWSER == 'opera':
-        context.browser = webdriver.Opera()
-    elif BROWSER == 'phantomjs':
-        context.browser = webdriver.PhantomJS()
     else:
         print("Browser you entered:", BROWSER, "is invalid value")
-
-    # behave -D ENV=test
-
-    if 'ENV' in context.config.userdata.keys():
-        if context.config.userdata['ENV'] is None:
-            BROWSER = 'dev'
-        else:
-            BROWSER = context.config.userdata['ENV']
-    else:
-        BROWSER = 'dev'
-
-    if BROWSER == 'dev':
-        context.base_url = "http://localhost:3000"
-    elif BROWSER == 'test':
-        context.base_url = "http://contact_list_app:3000"
-    elif BROWSER == 'prod':
-        context.base_url = "http://167.99.137.138:3000"
 
     context.browser.maximize_window()
     # print("Before scenario\n")
