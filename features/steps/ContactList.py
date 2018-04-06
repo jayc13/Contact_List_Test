@@ -1,5 +1,6 @@
 from behave import *
 from features.lib.pages import *
+import time
 
 use_step_matcher("re")
 
@@ -22,6 +23,7 @@ def step_impl(context):
 def step_impl(context):
     page = IndexPage(context)
     page.delete_contact_by_index(0)
+    time.sleep() 
 
 
 @step('I go to edit one contact')
