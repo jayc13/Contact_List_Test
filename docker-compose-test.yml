@@ -35,10 +35,8 @@ services:
     image: selenium/node-chrome:3.2.0
     volumes:
       - /dev/shm:/dev/shm
-    links:
-      - hub:hub
     depends_on:
-      - hub
+      - selenium_hub
     environment:
       HUB_HOST: selenium_hub
       
@@ -46,10 +44,6 @@ services:
     image: selenium/node-firefox:3.2.0
     volumes:
       - /dev/shm:/dev/shm
-    links:
-      - hub:hub
-    depends_on:
-      - hub
     environment:
       HUB_HOST: selenium_hub
 
