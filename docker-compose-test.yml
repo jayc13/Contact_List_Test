@@ -24,7 +24,13 @@ services:
       - "3000:3000"
     links:
       - "db:contact-list_db"
-           
+          
+  hub:
+    image: selenium/hub:3.4.0
+    container_name: selenium_hub
+    ports:
+      - "4444:4444"        
+          
   firefox:
     image: selenium/node-firefox:3.4.0
     volumes:
@@ -32,9 +38,9 @@ services:
     depends_on:
       - hub
     environment:
-      HUB_HOST: selenium_hub
-      HUB_PORT_4444_TCP_PORT: 4444
-      HUPORT_4444_TCP_ADDR: selenium_hub
+      - HUB_HOST=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUPORT_4444_TCP_ADDR=selenium_hub
       
   chrome:
     image: selenium/node-chrome:3.4.0
@@ -43,15 +49,9 @@ services:
     depends_on:
       - hub
     environment:
-      HUB_HOST: selenium_hub
-      HUB_PORT_4444_TCP_PORT: 4444
-      HUPORT_4444_TCP_ADDR: selenium_hub
-
-  hub:
-    image: selenium/hub:3.4.0
-    container_name: selenium_hub
-    ports:
-      - "4444:4444"
+      - HUB_HOST=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUPORT_4444_TCP_ADDR=selenium_hub
 
   test:
     image: caballerojavier13/contact_list_test:latest
