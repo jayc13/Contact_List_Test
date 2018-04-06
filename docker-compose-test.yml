@@ -24,18 +24,31 @@ services:
       - "3000:3000"
     links:
       - "db:contact-list_db"
-      
-  chrome:
-    image: selenium/node-chrome
+           
+  firefox:
+    image: selenium/node-firefox:3.4.0
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
       - hub
     environment:
       HUB_HOST: selenium_hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      HUPORT_4444_TCP_ADDR: selenium_hub
+      
+  chrome:
+    image: selenium/node-chrome:3.4.0
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: selenium_hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      HUPORT_4444_TCP_ADDR: selenium_hub
 
   hub:
-    image: selenium/hub
+    image: selenium/hub:3.4.0
     container_name: selenium_hub
     ports:
       - "4444:4444"
