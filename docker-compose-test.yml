@@ -41,7 +41,7 @@ services:
     depends_on:
       - hub
     environment:
-      HUB_HOST: selenium_hub"
+      HUB_HOST: selenium_hub
 
   hub:
     image: selenium/hub:3.2.0
