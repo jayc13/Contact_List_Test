@@ -40,4 +40,4 @@ services:
       - contact-list
   
 networks:
-   - contact-list
+   contact-list
